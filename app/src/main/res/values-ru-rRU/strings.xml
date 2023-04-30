@@ -2,4 +2,9 @@
 <resources>
     <string name="check_connection">Пожалуйста, проверьте соединение</string>
     <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="lesson">Занятия</string>
+    <string name="orders">Заявки</string>
+    <string name="add">Добавить</string>
+    <string name="chat">Чат</string>
+    <string name="more">Еще</string>
 </resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/lessons"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="@string/lesson" />
+    <item
+        android:id="@+id/orders"
+        android:enabled="true"
+        android:icon="@drawable/baseline_checklist_24"
+        android:title="@string/orders" />
+    <item
+        android:id="@+id/add"
+        android:enabled="true"
+        android:icon="@drawable/baseline_add_circle_outline_24"
+        android:title="@string/add" />
+    <item
+        android:id="@+id/chat"
+        android:enabled="true"
+        android:icon="@drawable/baseline_chat_24"
+        android:title="@string/chat" />
+    <item
+        android:id="@+id/more"
+        android:enabled="true"
+        android:icon="@drawable/baseline_more_horiz_24"
+        android:title="@string/more" />
+</menu>
