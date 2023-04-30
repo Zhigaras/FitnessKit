@@ -1,19 +1,17 @@
 package com.zhigaras.fitnesskit.data.dto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class OptionDto(
-    @Json(name = "club_name")
+    @SerializedName("club_name")
     val clubName: String,
-    @Json(name = "link_android")
+    @SerializedName("link_android")
     val linkAndroid: String,
-    @Json(name = "link_ios")
+    @SerializedName("link_ios")
     val linkIos: String,
-    @Json(name = "primary_color")
+    @SerializedName("primary_color")
     val primaryColor: String,
-    @Json(name = "secondary_color")
+    @SerializedName("secondary_color")
     val secondaryColor: String
 )

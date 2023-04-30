@@ -1,17 +1,15 @@
 package com.zhigaras.fitnesskit.data.dto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class ScheduleDto(
-    @Json(name = "lessons")
+    @SerializedName("lessons")
     val lessons: List<LessonDto>,
-    @Json(name = "option")
+    @SerializedName("option")
     val option: OptionDto,
-    @Json(name = "tabs")
+    @SerializedName("tabs")
     val tabs: List<TabDto>,
-    @Json(name = "trainers")
+    @SerializedName("trainers")
     val trainers: List<TrainerDto>
 )

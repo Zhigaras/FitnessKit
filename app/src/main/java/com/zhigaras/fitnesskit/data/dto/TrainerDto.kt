@@ -1,27 +1,25 @@
 package com.zhigaras.fitnesskit.data.dto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class TrainerDto(
-    @Json(name = "description")
+    @SerializedName("description")
     val description: String,
-    @Json(name = "full_name")
+    @SerializedName("full_name")
     val fullName: String,
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String,
-    @Json(name = "image_url")
+    @SerializedName("image_url")
     val imageUrl: String,
-    @Json(name = "image_url_medium")
+    @SerializedName("image_url_medium")
     val imageUrlMedium: String,
-    @Json(name = "image_url_small")
+    @SerializedName("image_url_small")
     val imageUrlSmall: String,
-    @Json(name = "last_name")
+    @SerializedName("last_name")
     val lastName: String,
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String,
-    @Json(name = "position")
+    @SerializedName("position")
     val position: String
 )

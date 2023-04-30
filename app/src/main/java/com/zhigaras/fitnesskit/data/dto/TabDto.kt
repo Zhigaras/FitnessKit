@@ -1,13 +1,11 @@
 package com.zhigaras.fitnesskit.data.dto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class TabDto(
-    @Json(name = "id")
+    @SerializedName("id")
     val id: Int,
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String
 )

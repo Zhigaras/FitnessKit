@@ -1,41 +1,39 @@
 package com.zhigaras.fitnesskit.data.dto
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class LessonDto(
-    @Json(name = "appointment_id")
+    @SerializedName("appointment_id")
     val appointmentId: String,
-    @Json(name = "available_slots")
+    @SerializedName("available_slots")
     val availableSlots: Int,
-    @Json(name = "client_recorded")
+    @SerializedName("client_recorded")
     val clientRecorded: Boolean,
-    @Json(name = "coach_id")
+    @SerializedName("coach_id")
     val coachId: String,
-    @Json(name = "color")
+    @SerializedName("color")
     val color: String,
-    @Json(name = "commercial")
+    @SerializedName("commercial")
     val commercial: Boolean,
-    @Json(name = "date")
+    @SerializedName("date")
     val date: String,
-    @Json(name = "description")
+    @SerializedName("description")
     val description: String,
-    @Json(name = "endTime")
+    @SerializedName("endTime")
     val endTime: String,
-    @Json(name = "is_cancelled")
+    @SerializedName("is_cancelled")
     val isCancelled: Boolean,
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String,
-    @Json(name = "place")
+    @SerializedName("place")
     val place: String,
-    @Json(name = "service_id")
+    @SerializedName("service_id")
     val serviceId: String,
-    @Json(name = "startTime")
+    @SerializedName("startTime")
     val startTime: String,
-    @Json(name = "tab")
+    @SerializedName("tab")
     val tab: String,
-    @Json(name = "tab_id")
+    @SerializedName("tab_id")
     val tabId: Int
 )

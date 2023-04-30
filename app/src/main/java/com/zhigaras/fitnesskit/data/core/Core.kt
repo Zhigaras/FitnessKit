@@ -1,9 +1,9 @@
 package com.zhigaras.fitnesskit.data.core
 
-import com.zhigaras.fitnesskit.data.RemoteApi
 import com.zhigaras.fitnesskit.data.MainRepository
+import com.zhigaras.fitnesskit.data.RemoteApi
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 interface Core {
     
@@ -19,7 +19,7 @@ interface Core {
         
         private val remoteApi = Retrofit.Builder()
             .baseUrl(RemoteApi.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RemoteApi::class.java)
         

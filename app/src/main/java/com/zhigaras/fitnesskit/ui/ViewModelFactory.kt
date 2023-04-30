@@ -12,7 +12,12 @@ class ViewModelFactory(
         val mainRepository = core.provideRepository()
         val dispatchers = core.provideDispatchers()
         return when (modelClass) {
-            ScheduleViewModel::class.java -> ScheduleViewModel(mainRepository, dispatchers) as T
+            ScheduleViewModel::class.java -> ScheduleViewModel(
+                mainRepository,
+                dispatchers,
+                Communication.Base()
+            ) as T
+            
             else -> throw IllegalArgumentException("Unknown class name: $modelClass")
         }
     }
