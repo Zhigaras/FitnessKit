@@ -7,4 +7,6 @@
     <string name="add">Добавить</string>
     <string name="chat">Чат</string>
     <string name="more">Еще</string>
+    <string name="couch_name">Имя тренера</string>
+    <string name="lesson_location">Место проведения тренеровки</string>
 </resources>

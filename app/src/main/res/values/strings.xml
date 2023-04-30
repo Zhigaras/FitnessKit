@@ -8,4 +8,6 @@
     <string name="add">Add</string>
     <string name="chat">Chat</string>
     <string name="more">More</string>
+    <string name="couch_name">Couch name</string>
+    <string name="lesson_location">Lesson location</string>
 </resources>
