@@ -8,22 +8,28 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.zhigaras.fitnesskit.ProvideViewModel
 import com.zhigaras.fitnesskit.R
+import com.zhigaras.fitnesskit.databinding.FragmentScheduleBinding
+import com.zhigaras.fitnesskit.domain.ApiResult
 import com.zhigaras.fitnesskit.ui.adapter.ScheduleAdapter
 import kotlinx.coroutines.launch
 
 class ScheduleFragment : Fragment() {
     
     private lateinit var viewModel: ScheduleViewModel
+    private var _binding: FragmentScheduleBinding? = null
+    private val binding get() = _binding!!
+    private val scheduleAdapter = ScheduleAdapter()
     
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_schedule, container, false)
+    ): View {
+        _binding = FragmentScheduleBinding.inflate(inflater, container, false)
+        return binding.root
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,17 +39,36 @@ class ScheduleFragment : Fragment() {
             ScheduleViewModel::class.java,
             this
         )
-        val scheduleAdapter = ScheduleAdapter()
-        view.findViewById<RecyclerView>(R.id.recycler).apply {
-            adapter = scheduleAdapter
+        binding.recycler.adapter = scheduleAdapter
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.fetchSchedule()
         }
         
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.observe(viewLifecycleOwner) {
-                    it.data?.let { scheduleAdapter.setData(it) }
+                    binding.swipeRefresh.isRefreshing = it is ApiResult.Loading
+                    it.data?.let {
+                        scheduleAdapter.setData(it)
+                    }
+                    it.errorMessage?.let { error ->
+                        Snackbar.make(
+                            binding.snackbarLayout,
+                            error.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .setAnchorView(binding.snackbarLayout)
+                            .setAction(R.string.retry) {
+                                viewModel.fetchSchedule()
+                            }.show()
+                    }
                 }
             }
         }
+    }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

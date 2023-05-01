@@ -11,4 +11,5 @@
     <string name="lesson_location">Место проведения тренеровки</string>
     <string name="coach_is_not_yet_appointed">Еще не назначен</string>
     <string name="schedule">Расписание</string>
+    <string name="retry">Повторить</string>
 </resources>

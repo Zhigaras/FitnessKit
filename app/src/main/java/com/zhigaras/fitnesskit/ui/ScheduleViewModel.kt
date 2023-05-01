@@ -20,12 +20,16 @@ class ScheduleViewModel(
         fetchSchedule()
     }
     
-    override fun observe(owner: LifecycleOwner, observer: Observer<ApiResult<List<LessonListItem>>>) {
+    override fun observe(
+        owner: LifecycleOwner,
+        observer: Observer<ApiResult<List<LessonListItem>>>
+    ) {
         communication.observe(owner, observer)
     }
     
     override fun fetchSchedule() {
         viewModelScope.launch {
+            communication.map(ApiResult.Loading())
             mainRepository.fetchSchedule().let { communication.map(it) }
         }
     }

@@ -20,10 +20,10 @@ abstract class BaseRemoteRepo {
                 else
                     ApiResult.Error(exception = UiText.ResourceString(R.string.something_went_wrong))
             } else {
-                ApiResult.Error(exception = UiText.ResourceString(R.string.check_connection))
+                ApiResult.Error(exception = UiText.ResourceString(R.string.something_went_wrong))
             }
         } catch (e: Exception) {
-            ApiResult.Error(exception = UiText.ResourceString(R.string.something_went_wrong))
+            ApiResult.Error(exception = UiText.ResourceString(R.string.check_connection))
         }
     }
 }
