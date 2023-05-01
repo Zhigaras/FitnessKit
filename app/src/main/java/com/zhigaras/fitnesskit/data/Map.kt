@@ -1,5 +1,6 @@
 package com.zhigaras.fitnesskit.data
 
+import android.graphics.Color
 import com.zhigaras.fitnesskit.R
 import com.zhigaras.fitnesskit.data.dto.ScheduleDto
 import com.zhigaras.fitnesskit.domain.UiText
@@ -30,6 +31,7 @@ interface Map {
                     endTime = lessonDto.endTime,
                     place = lessonDto.place,
                     lessonName = lessonDto.name,
+                    markerColor = Color.parseColor(lessonDto.color),
                     localDate = LocalDate.parse(lessonDto.date),
                     coachName = input.trainers.find { it.id == lessonDto.coachId }.let {
                         if (it != null) UiText.DynamicString(it.fullName)

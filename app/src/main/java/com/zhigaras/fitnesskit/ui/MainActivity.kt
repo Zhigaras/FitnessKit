@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity(), ProvideViewModel {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction()
-            .add(R.id.container, ScheduleFragment())
+            .replace(R.id.container, ScheduleFragment())
             .commit()
     }
     

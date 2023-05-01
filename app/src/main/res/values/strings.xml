@@ -11,4 +11,5 @@
     <string name="couch_name">Couch name</string>
     <string name="lesson_location">Lesson location</string>
     <string name="coach_is_not_yet_appointed">Not yet appointed</string>
+    <string name="schedule">Schedule</string>
 </resources>

@@ -12,8 +12,9 @@ data class Lesson(
     val coachName: UiText,
     val lessonName: String,
     val localDate: LocalDate,
+    val markerColor: Int
 ) {
-    val formattedDate =
+    val formattedDate: String =
         localDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM", Locale.getDefault()))
     
 }

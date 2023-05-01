@@ -3,6 +3,7 @@ package com.zhigaras.fitnesskit.ui.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zhigaras.fitnesskit.R
 
@@ -46,6 +47,8 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleViewHolder>() {
             viewList.zip(valueList).forEach { pair ->
                 holder.setText(pair.first, pair.second)
             }
+            holder.itemView.findViewById<TextView>(R.id.color_marker)
+                .setBackgroundColor(it.markerColor)
         }
         item.header?.let {
             holder.setText(R.id.lesson_header, it)

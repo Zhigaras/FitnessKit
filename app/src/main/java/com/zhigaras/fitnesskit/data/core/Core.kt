@@ -3,6 +3,8 @@ package com.zhigaras.fitnesskit.data.core
 import com.zhigaras.fitnesskit.data.MainRepository
 import com.zhigaras.fitnesskit.data.Map
 import com.zhigaras.fitnesskit.data.RemoteApi
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,6 +22,13 @@ interface Core {
         
         private val remoteApi = Retrofit.Builder()
             .baseUrl(RemoteApi.BASE_URL)
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().also {
+                        it.level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .build()
+            )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RemoteApi::class.java)
