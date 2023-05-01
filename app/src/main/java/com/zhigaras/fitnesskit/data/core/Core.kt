@@ -27,7 +27,10 @@ interface Core {
         override fun provideDispatchers(): DispatchersModule = dispatchersModule
         
         override fun provideRepository(): MainRepository =
-            MainRepository.Base(remoteApi, Map.LessonMapper())
+            MainRepository.Base(
+                remoteApi,
+                Map.ScheduleToItemListMapper(Map.LessonMapper(), Map.ItemListMapper())
+            )
         
     }
 }

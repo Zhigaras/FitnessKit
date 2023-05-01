@@ -4,15 +4,27 @@ import com.zhigaras.fitnesskit.R
 import com.zhigaras.fitnesskit.data.dto.ScheduleDto
 import com.zhigaras.fitnesskit.domain.UiText
 import com.zhigaras.fitnesskit.domain.entitys.Lesson
+import com.zhigaras.fitnesskit.ui.adapter.ItemType
+import com.zhigaras.fitnesskit.ui.adapter.LessonListItem
 import java.time.LocalDate
 
-interface Map<T, R> {
-    fun map(input: T): List<R>
+interface Map {
     
-    class LessonMapper: Map<ScheduleDto, Lesson> {
+    interface Base<T, R> {
+        fun map(input: T): List<R>
+        
+    }
+    
+    interface ListMap<T, R> {
+        
+        fun map(input: List<T>): List<R>
+        
+    }
+    
+    class LessonMapper : Base<ScheduleDto, Lesson> {
         
         override fun map(input: ScheduleDto): List<Lesson> {
-            return input.lessons.map {lessonDto ->
+            return input.lessons.map { lessonDto ->
                 Lesson(
                     startTime = lessonDto.startTime,
                     endTime = lessonDto.endTime,
@@ -25,6 +37,37 @@ interface Map<T, R> {
                     }
                 )
             }
+        }
+    }
+    
+    class ItemListMapper : ListMap<Lesson, LessonListItem> {
+        
+        override fun map(input: List<Lesson>): List<LessonListItem> {
+            val list = input.sortedByDescending { it.localDate }
+            val map = emptyMap<String, ArrayList<Lesson>>().toMutableMap()
+            list.forEach {
+                if (map[it.formattedDate] == null)
+                    map[it.formattedDate] = ArrayList()
+                map[it.formattedDate]?.add(it)
+            }
+            val newLessons = ArrayList<LessonListItem>()
+            map.forEach { entry ->
+                newLessons.add(LessonListItem(itemType = ItemType.HEADER, header = entry.key))
+                entry.value.mapTo(newLessons) {
+                    LessonListItem(itemType = ItemType.LESSON, lesson = it)
+                }
+            }
+            return newLessons
+        }
+    }
+    
+    class ScheduleToItemListMapper(
+        private val lessonMapper: Base<ScheduleDto, Lesson>,
+        private val itemListMapper: ListMap<Lesson, LessonListItem>
+    ) : Base<ScheduleDto, LessonListItem> {
+        
+        override fun map(input: ScheduleDto): List<LessonListItem> {
+            return itemListMapper.map(lessonMapper.map(input))
         }
     }
 }
