@@ -3,4 +3,6 @@
     android:id="@+id/lesson_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/lesson_in_recycler_view_dimen"
+    android:layout_marginTop="48dp"
     android:textAppearance="@style/header_item_stile" />

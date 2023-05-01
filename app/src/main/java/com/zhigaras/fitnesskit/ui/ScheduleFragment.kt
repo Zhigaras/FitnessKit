@@ -36,7 +36,6 @@ class ScheduleFragment : Fragment() {
         val scheduleAdapter = ScheduleAdapter()
         view.findViewById<RecyclerView>(R.id.recycler).apply {
             adapter = scheduleAdapter
-//            addItemDecoration(MarginItemDecoration(R.dimen.lesson_in_recycler_view_dimen))
         }
         
         viewLifecycleOwner.lifecycleScope.launch {
