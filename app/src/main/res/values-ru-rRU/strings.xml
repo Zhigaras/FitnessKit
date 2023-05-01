@@ -9,4 +9,5 @@
     <string name="more">Еще</string>
     <string name="couch_name">Имя тренера</string>
     <string name="lesson_location">Место проведения тренеровки</string>
+    <string name="coach_is_not_yet_appointed">Еще не назначен</string>
 </resources>

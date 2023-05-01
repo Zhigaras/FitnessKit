@@ -4,7 +4,7 @@ package com.zhigaras.fitnesskit.data.dto
 import com.google.gson.annotations.SerializedName
 
 data class ScheduleDto(
-    @SerializedName("lessons")
+    @SerializedName("lessons")  //TODO delete annotations
     val lessons: List<LessonDto>,
     @SerializedName("option")
     val option: OptionDto,

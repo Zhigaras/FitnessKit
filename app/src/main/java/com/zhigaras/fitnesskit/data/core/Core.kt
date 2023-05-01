@@ -1,6 +1,7 @@
 package com.zhigaras.fitnesskit.data.core
 
 import com.zhigaras.fitnesskit.data.MainRepository
+import com.zhigaras.fitnesskit.data.Map
 import com.zhigaras.fitnesskit.data.RemoteApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +26,8 @@ interface Core {
         
         override fun provideDispatchers(): DispatchersModule = dispatchersModule
         
-        override fun provideRepository(): MainRepository = MainRepository.Base(remoteApi)
+        override fun provideRepository(): MainRepository =
+            MainRepository.Base(remoteApi, Map.LessonMapper())
         
     }
 }

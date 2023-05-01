@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.RecyclerView
 import com.zhigaras.fitnesskit.ProvideViewModel
 import com.zhigaras.fitnesskit.R
 import kotlinx.coroutines.launch
@@ -32,6 +33,7 @@ class ScheduleFragment : Fragment() {
             ScheduleViewModel::class.java,
             this
         )
+        view.findViewById<RecyclerView>(R.id.recycler).adapter //todo()
         
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -40,6 +42,5 @@ class ScheduleFragment : Fragment() {
                 }
             }
         }
-        
     }
 }
