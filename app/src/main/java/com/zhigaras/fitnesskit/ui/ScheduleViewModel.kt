@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zhigaras.fitnesskit.data.MainRepository
 import com.zhigaras.fitnesskit.data.core.DispatchersModule
-import com.zhigaras.fitnesskit.domain.ApiResult
+import com.zhigaras.fitnesskit.domain.LoadState
 import com.zhigaras.fitnesskit.ui.adapter.LessonListItem
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 class ScheduleViewModel(
     private val mainRepository: MainRepository,
     private val dispatchers: DispatchersModule,
-    private val communication: Communication.Mutable<ApiResult<List<LessonListItem>>>,
-) : ViewModel(), Communication.Observe<ApiResult<List<LessonListItem>>>, ScheduleInteract {
+    private val communication: Communication.Mutable<LoadState<List<LessonListItem>>>,
+) : ViewModel(), Communication.Observe<LoadState<List<LessonListItem>>>, ScheduleInteract {
     
     private var scrollState = 0
     
@@ -25,15 +25,15 @@ class ScheduleViewModel(
     
     override fun observe(
         owner: LifecycleOwner,
-        observer: Observer<ApiResult<List<LessonListItem>>>
+        observer: Observer<LoadState<List<LessonListItem>>>
     ) {
         communication.observe(owner, observer)
     }
     
     override fun fetchSchedule() {
         viewModelScope.launch {
-            communication.map(ApiResult.Loading())
-            val result: ApiResult<List<LessonListItem>>
+            communication.map(LoadState.Loading())
+            val result: LoadState<List<LessonListItem>>
             withContext(dispatchers.io()) {
                 result = mainRepository.fetchSchedule()
             }

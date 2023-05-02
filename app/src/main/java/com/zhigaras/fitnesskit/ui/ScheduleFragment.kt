@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.zhigaras.fitnesskit.ProvideViewModel
 import com.zhigaras.fitnesskit.R
 import com.zhigaras.fitnesskit.databinding.FragmentScheduleBinding
-import com.zhigaras.fitnesskit.domain.ApiResult
+import com.zhigaras.fitnesskit.domain.LoadState
 import com.zhigaras.fitnesskit.ui.adapter.ScheduleAdapter
 
 class ScheduleFragment : Fragment() {
@@ -45,7 +45,7 @@ class ScheduleFragment : Fragment() {
         }
         
         viewModel.observe(viewLifecycleOwner) {
-            binding.swipeRefresh.isRefreshing = it is ApiResult.Loading
+            binding.swipeRefresh.isRefreshing = it is LoadState.Loading
             it.data?.let {
                 scheduleAdapter.setData(it)
             }
