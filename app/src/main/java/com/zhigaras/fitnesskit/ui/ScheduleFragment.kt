@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.zhigaras.fitnesskit.ProvideViewModel
 import com.zhigaras.fitnesskit.R
@@ -40,6 +41,9 @@ class ScheduleFragment : Fragment() {
             this
         )
         binding.recycler.adapter = scheduleAdapter
+        
+        binding.recycler.scrollToPosition(viewModel.restoreScrollState())
+        
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetchSchedule()
         }
@@ -65,6 +69,12 @@ class ScheduleFragment : Fragment() {
                 }
             }
         }
+    }
+    
+    override fun onSaveInstanceState(outState: Bundle) {
+        viewModel.saveScrollState(
+            (binding.recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+        )
     }
     
     override fun onDestroyView() {

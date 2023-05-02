@@ -16,6 +16,8 @@ class ScheduleViewModel(
     private val communication: Communication.Mutable<ApiResult<List<LessonListItem>>>,
 ) : ViewModel(), Communication.Observe<ApiResult<List<LessonListItem>>>, ScheduleInteract {
     
+    private var scrollState = 0
+    
     init {
         fetchSchedule()
     }
@@ -33,10 +35,20 @@ class ScheduleViewModel(
             mainRepository.fetchSchedule().let { communication.map(it) }
         }
     }
+    
+    override fun saveScrollState(state: Int) {
+        scrollState = state
+    }
+    
+    override fun restoreScrollState(): Int = scrollState
 }
 
 interface ScheduleInteract {
     
     fun fetchSchedule()
+    
+    fun saveScrollState(state: Int)
+    
+    fun restoreScrollState(): Int
     
 }
