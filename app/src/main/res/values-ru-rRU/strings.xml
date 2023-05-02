@@ -12,4 +12,6 @@
     <string name="coach_is_not_yet_appointed">Еще не назначен</string>
     <string name="schedule">Расписание</string>
     <string name="retry">Повторить</string>
+    <string name="duration">%1$s ч. %2$s мин.</string>
+    <string name="duration_zero_hours">%1$s мин.</string>
 </resources>

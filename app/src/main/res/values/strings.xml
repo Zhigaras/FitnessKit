@@ -13,4 +13,6 @@
     <string name="coach_is_not_yet_appointed">Not yet appointed</string>
     <string name="schedule">Schedule</string>
     <string name="retry">Retry</string>
+    <string name="duration">%1$s h. %2$s min.</string>
+    <string name="duration_zero_hours">%1$s min.</string>
 </resources>

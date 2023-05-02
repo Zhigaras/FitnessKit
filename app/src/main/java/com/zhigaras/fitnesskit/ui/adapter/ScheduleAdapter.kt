@@ -33,6 +33,7 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleViewHolder>() {
             val viewList = listOf(
                 R.id.start_time,
                 R.id.lesson_name,
+                R.id.duration,
                 R.id.end_time,
                 R.id.couch_name,
                 R.id.location
@@ -40,6 +41,7 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleViewHolder>() {
             val valueList = listOf(
                 it.startTime,
                 it.lessonName,
+                it.duration().asString(holder.itemView.context),
                 it.endTime,
                 it.coachName.asString(holder.itemView.context),
                 it.place
