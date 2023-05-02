@@ -9,6 +9,7 @@ import com.zhigaras.fitnesskit.data.core.DispatchersModule
 import com.zhigaras.fitnesskit.domain.ApiResult
 import com.zhigaras.fitnesskit.ui.adapter.LessonListItem
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ScheduleViewModel(
     private val mainRepository: MainRepository,
@@ -32,7 +33,11 @@ class ScheduleViewModel(
     override fun fetchSchedule() {
         viewModelScope.launch {
             communication.map(ApiResult.Loading())
-            mainRepository.fetchSchedule().let { communication.map(it) }
+            val result: ApiResult<List<LessonListItem>>
+            withContext(dispatchers.io()) {
+                result = mainRepository.fetchSchedule()
+            }
+            communication.map(result)
         }
     }
     
